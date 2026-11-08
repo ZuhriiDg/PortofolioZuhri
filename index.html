@@ -3,272 +3,235 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0e0e10">
-<title>Portofolio-Zuhri</title>
+<title>Zuhri | Beginner Dev</title>
+<meta name="description" content="Portofolio Zuhri, pemula pembuat website dari Tulungagung.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Geist:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  
-  :root{
-    --bg:#0e0e10; --teks:#f4f4f5; --abu:#9a9aa1; --garis:#2a2a2e; --tepi:#34343a;
-    --biru-atas:#1f5f8d; --biru-bawah:#133650; --biru-teks:#9dbbd1;
-    --sans:"Inter Tight","Helvetica Neue",Arial,sans-serif;
-    --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-  }
-  *{box-sizing:border-box;margin:0}
-  html{scroll-behavior:smooth;background:var(--bg)}
-  body{font-family:var(--sans);color:var(--teks);-webkit-font-smoothing:antialiased;
-    background:radial-gradient(130% 100% at 50% 0%,#2e2e32 0%,#151517 55%,var(--bg) 100%) no-repeat;background-size:100% 900px;background-color:var(--bg)}
-  body.kunci{overflow:hidden}
-  
-  body::before{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.07;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-  a{color:inherit;text-decoration:none}
-  :focus-visible{outline:2px solid #fff;outline-offset:3px}
-  
-  #muat{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--abu);transition:opacity .4s}
-  #muat.selesai{opacity:0;pointer-events:none}
-  .titik{display:flex;gap:8px}
-  .titik i{width:9px;height:9px;border-radius:50%;background:var(--teks);animation:lompat 1s ease-in-out infinite}
-  .titik i:nth-child(2){animation-delay:.15s}.titik i:nth-child(3){animation-delay:.3s}
-  @keyframes lompat{40%{transform:translateY(-10px)}}
-  
-  #geser{position:fixed;inset:0;z-index:40;background:radial-gradient(130% 70% at 50% 0%,#2e2e32,var(--bg));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;font-size:1.05rem;color:var(--abu);transition:transform .7s cubic-bezier(.7,0,.2,1);cursor:pointer}
-  #geser.naik{transform:translateY(-100%)}
-  #geser svg{width:34px;height:34px;animation:naik 1.4s ease-in-out infinite}
-  @keyframes naik{50%{transform:translateY(-10px)}}
-  
-  header{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
-  .pil,#tombolKontak{border:1px solid var(--tepi);background:rgba(22,22,24,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-  .pil{display:flex;gap:4px;padding:6px;border-radius:99px}
-  .pil a{padding:12px 22px;border-radius:99px;font-size:1.05rem;transition:background .25s}
-  .pil a[aria-current="true"]{background:rgba(255,255,255,.1)}
+:root{
+  --canvas:#0A0B0F; --surface:#14161D; --ink:#F2F3F7; --soft:#8B90A0;
+  --accent:#4D7CFF; --accent-ink:#0A0B0F; --line:#232734;
+  --display:"Archivo",system-ui,sans-serif; --text:"Geist",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--ink);font-family:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+.wrap{width:min(1100px,100% - 40px);margin-inline:auto}
 
-  
-  #tombolKontak{position:relative;width:58px;height:58px;border-radius:50%;padding:0;color:var(--teks);cursor:pointer;transition:background .3s}
-  #tombolKontak[aria-expanded="true"]{background:rgba(44,44,48,.85)}
-  #tombolKontak .at,#tombolKontak .x{position:absolute;left:50%;top:50%;transition:transform .55s cubic-bezier(.6,0,.2,1),opacity .3s}
-  #tombolKontak .at{display:block;font:400 1.75rem/1 var(--sans);transform:translate(-50%,-50%) rotate(0deg) scale(1)}
-  #tombolKontak .x{width:24px;height:24px;opacity:0;transform:translate(-50%,-50%) rotate(-180deg) scale(.4)}
-  #tombolKontak[aria-expanded="true"] .at{opacity:0;transform:translate(-50%,-50%) rotate(180deg) scale(.4)}
-  #tombolKontak[aria-expanded="true"] .x{opacity:1;transform:translate(-50%,-50%) rotate(0deg) scale(1)}
-  
-  #kontak{position:fixed;z-index:31;top:90px;right:20px;width:clamp(210px,58vw,270px);padding:8px;
-    border:1px solid var(--tepi);border-radius:30px;
-    background:linear-gradient(165deg,rgba(68,68,72,.72),rgba(30,30,33,.84));
-    -webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);box-shadow:0 20px 50px rgba(0,0,0,.45);
-    transform-origin:100% 0;opacity:0;visibility:hidden;transform:translateY(-10px) scale(.92);
-    transition:opacity .25s,transform .4s cubic-bezier(.2,.9,.3,1.15),visibility 0s .4s}
-  #kontak.buka{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .4s cubic-bezier(.2,.9,.3,1.15),visibility 0s}
-  #kontak a{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-radius:22px;font-size:1.1rem;letter-spacing:-.02em;transition:background .2s}
-  #kontak a:hover,#kontak a:active{background:rgba(255,255,255,.07)}
-  #kontak a svg{width:20px;height:20px;flex:none;opacity:.85}
-  
-  .hero{min-height:92svh;display:flex;flex-direction:column;justify-content:center;gap:34px;padding:130px 22px 50px}
-  .label{display:flex;align-items:center;gap:14px;color:var(--abu);font-size:clamp(1rem,4.4vw,1.4rem);letter-spacing:-.02em}
-  .label i{width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 0 14px rgba(255,255,255,.7)}
-  h1{font-weight:500;font-size:clamp(2.9rem,14.2vw,7rem);line-height:.98;letter-spacing:-.05em;text-shadow:0 0 60px rgba(110,130,255,.3)}
-  h1 em{font:italic 400 1.12em/.9 var(--serif);letter-spacing:-.02em;text-shadow:none;
-    background:linear-gradient(180deg,#fff 20%,#74747b 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.08em}
-  .sub{font-size:clamp(1.3rem,5.6vw,2.1rem);line-height:1.3;letter-spacing:-.03em;max-width:24ch}
-  .sub span{display:block;color:var(--abu)}
-  
-  .karya{max-width:980px;margin:0 auto;padding:0 20px 40px}
-  .judul{display:flex;align-items:center;gap:16px;color:var(--abu);font-size:clamp(1.1rem,4.6vw,1.5rem);letter-spacing:-.02em;padding:34px 2px 46px;border-top:1px solid var(--garis)}
-  .judul svg{width:30px;height:30px;flex:none}
-  .luar{position:relative;display:block;padding:20px;margin-bottom:22px;border:1px solid var(--garis);border-radius:42px;background:rgba(255,255,255,.015);transition:transform .35s}
-  .luar::before{content:"";position:absolute;top:-1px;left:18%;right:18%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent)}
-  .dalam{min-height:250px;padding:38px 34px;border-radius:28px;background:linear-gradient(180deg,var(--biru-atas),var(--biru-bawah));box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
-  .atas{display:flex;justify-content:space-between;align-items:center;gap:16px}
-  .dalam h3{font-weight:500;font-size:clamp(1.7rem,7vw,2.6rem);letter-spacing:-.04em;line-height:1.1}
-  .atas svg{width:36px;height:36px;flex:none;transition:transform .3s}
-  .dalam p{margin-top:18px;font-size:clamp(1.05rem,4.4vw,1.4rem);line-height:1.4;letter-spacing:-.02em;color:var(--biru-teks);max-width:32ch}
-  .dalam p b{font-weight:500;color:var(--teks)}
-  .luar.kosong .dalam{background:linear-gradient(180deg,#2b2b2f,#18181b)}
-  .luar.kosong .dalam p{color:#7b7b83}
-  .luar.kosong .dalam p b{color:#b4b4bb}
-  .luar:hover,.luar:focus-visible{transform:translateY(-4px)}
-  .luar:hover .atas svg{transform:translateX(6px)}
-  
-  .info{max-width:980px;margin:0 auto;padding:60px 22px 50px}
-  .info h2{font-weight:500;font-size:clamp(2rem,8vw,3.4rem);letter-spacing:-.04em;margin-bottom:20px}
-  .info p{max-width:52ch;line-height:1.6;color:#c9c9ce;font-size:1.1rem;margin-bottom:14px}
-  footer{max-width:980px;margin:0 auto;padding:30px 22px 60px;color:var(--abu);border-top:1px solid var(--garis)}
+/* header */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px max(20px,4vw);font-family:var(--display);font-weight:700}
+.top nav{display:flex;gap:22px;font-family:var(--text);font-weight:500;font-size:.95rem}
+.top nav a{text-decoration:none;color:var(--soft)}
+.top nav a:hover{color:var(--ink)}
+.brand{text-decoration:none;display:inline-flex;gap:.35em}
+.brand s{text-decoration:none;position:relative;opacity:calc(1 - var(--k,0) * .7)}
+.brand s::after{content:"";position:absolute;left:0;right:0;top:55%;height:2px;background:var(--accent);transform:scaleX(var(--k,0));transform-origin:left}
 
-  .muncul{opacity:0;translate:0 36px;will-change:opacity,translate;
-    transition:opacity .9s cubic-bezier(.2,.7,.2,1),translate .9s cubic-bezier(.2,.7,.2,1),transform .35s;
-    transition-delay:var(--tunda,0s),var(--tunda,0s),0s}
-  .muncul.dari-atas{translate:0 -36px}
-  .muncul.tampak{opacity:1;translate:0 0}
+/* hero: four planes */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;display:grid;place-items:center}
+.plane{position:absolute;inset:-10% 0;will-change:transform;transform:translate3d(0,var(--ty,0),0)}
+.p-bg{background:
+  linear-gradient(var(--line) 1px,transparent 1px) 0 0/64px 64px,
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/64px 64px;
+  opacity:.55;-webkit-mask-image:radial-gradient(ellipse at 50% 45%,#000 20%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 45%,#000 20%,transparent 70%)}
+.giant{position:absolute;left:50%;top:15%;translate:-50% 0;font-family:var(--display);font-weight:800;font-size:clamp(5.5rem,27vw,23rem);line-height:.82;letter-spacing:-.04em;white-space:nowrap;will-change:transform;transform:translate3d(0,var(--ty,0),0)}
+.portrait{position:absolute;left:50%;bottom:0;translate:-50% 0;width:min(46vw,310px);aspect-ratio:3/4;border-radius:999px 999px 0 0;background:var(--surface);border:1px solid var(--line);border-bottom:0;overflow:hidden;display:grid;place-items:center;will-change:transform;transform:translate3d(0,var(--ty,0),0)}
+.portrait b{font-family:var(--display);font-size:7rem;color:var(--line)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p-fg{pointer-events:none}
+.p-fg i{position:absolute;display:block}
+.ring{width:84px;height:84px;border:3px solid var(--accent);border-radius:50%;left:12%;top:58%}
+.sq{width:46px;height:46px;background:var(--accent);right:14%;top:34%;rotate:14deg;box-shadow:8px 10px 18px rgba(0,0,0,.45)}
+.dot{width:16px;height:16px;background:var(--ink);border-radius:50%;right:24%;top:72%}
+.lead{position:absolute;left:max(20px,4vw);bottom:9svh;max-width:21ch;font-size:1.05rem;color:var(--ink);z-index:3}
+.lead span{color:var(--soft)}
 
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* about: words fill with scroll */
+.about{height:240svh;position:relative}
+.about .stick{position:sticky;top:0;height:100svh;display:grid;align-content:center}
+.label{font-size:.85rem;color:var(--soft);margin-bottom:22px}
+.scrub{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,5.2vw,3.6rem);line-height:1.15;letter-spacing:-.02em;max-width:22ch}
+.scrub span{opacity:.18;transition:opacity .25s ease}
+.scrub span.on{opacity:1}
+
+/* work: stacked cards */
+.work{padding:12svh 0 4svh}
+.work h2,.contact h2{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,4.6rem);line-height:1;letter-spacing:-.03em}
+.stack{margin-top:7svh}
+.card{position:sticky;top:calc(11svh + var(--i) * 20px);min-height:58svh;margin-bottom:10svh;padding:clamp(22px,4vw,44px);background:var(--surface);border:1px solid var(--line);border-radius:22px;display:grid;gap:26px;align-content:space-between;box-shadow:0 -14px 30px rgba(0,0,0,.4)}
+.card .tag{font-size:.85rem;color:var(--soft)}
+.card h3{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,5vw,3.2rem);line-height:1.05;letter-spacing:-.02em;margin:6px 0 12px}
+.card p{color:var(--soft);max-width:46ch}
+.btn{display:inline-block;width:fit-content;padding:13px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:500;text-decoration:none;transition:transform .2s ease,opacity .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.swatch{display:flex;gap:10px}
+.swatch i{width:34px;height:34px;border-radius:50%;border:1px solid var(--line)}
+
+/* skills: scroll-driven rows */
+.rows{padding:10svh 0;overflow:hidden;border-block:1px solid var(--line)}
+.row{display:flex;gap:2.2rem;white-space:nowrap;font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,8vw,6rem);letter-spacing:-.03em;line-height:1.15;will-change:transform;transform:translate3d(var(--tx,0),0,0)}
+.row.alt{color:transparent;-webkit-text-stroke:1.5px var(--soft)}
+.row em{font-style:normal;color:var(--accent)}
+.note{margin-top:5svh;color:var(--soft);font-size:.95rem}
+
+/* contact: split, holds */
+.contact{min-height:100svh;display:grid;align-items:center;padding:14svh 0 8svh}
+.split{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
+.contact h2{font-size:clamp(2.8rem,9vw,7rem)}
+.contact h2 u{text-decoration:none;color:var(--accent)}
+.links{display:grid;gap:12px}
+.links a{display:flex;justify-content:space-between;gap:14px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;text-decoration:none;background:var(--surface);transition:border-color .2s ease,transform .2s ease}
+.links a:hover{border-color:var(--accent);transform:translateX(4px)}
+.links small{color:var(--soft)}
+footer{margin-top:10svh;color:var(--soft);font-size:.85rem}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:760px){
+  .split{grid-template-columns:1fr}
+  .top nav{gap:16px}
+  .lead{bottom:auto;top:76svh;max-width:24ch;font-size:.95rem}
+  .portrait{width:min(58vw,260px)}
+  .card{top:calc(9svh + var(--i) * 14px);min-height:54svh}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .plane,.giant,.portrait,.row{transform:none!important}
+  .scrub span{opacity:1}
+  .btn,.links a{transition:none}
+}
 </style>
 </head>
-<body class="kunci">
+<body>
 
-<div id="muat" aria-hidden="true"><div class="titik"><i></i><i></i><i></i></div><span>Wait</span></div>
-
-<div id="geser" role="button" tabindex="0" aria-label="Geser ke atas untuk melihat karya">
-  <svg viewBox="0 0 24 24" fill="none" stroke="#f4f4f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  <span>Explore my latest projects ↑</span>
-</div>
-
-<header>
-  <nav class="pil" aria-label="Menu utama">
-    <a href="#atas" id="navKarya" aria-current="true">Work</a>
-    <a href="#info" id="navInfo">Info</a>
-  </nav>
-  <button id="tombolKontak" aria-expanded="false" aria-controls="kontak" aria-label="Kontak">
-    <span class="at" aria-hidden="true">@</span>
-    <svg class="x" viewBox="0 0 24 24" fill="none" stroke="#f4f4f5" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
-  </button>
+<header class="top">
+  <a class="brand" href="#top" aria-label="Zuhri, beranda"><s id="beg">Beginner</s><span>Dev</span></a>
+  <nav><a href="#karya">Work</a><a href="#kontak">Contact</a></nav>
 </header>
 
-<div id="kontak">
-  <a href="https://instagram.com/zuhhhriii" target="_blank" rel="noopener">Instagram
-    <svg viewBox="0 0 24 24" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-  <a href="mailto:saifudinzuhri744@gmail.com">Email
-    <svg viewBox="0 0 24 24" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-</div>
+<main>
+<section class="hero" id="top">
+  <div class="plane p-bg" data-speed="0.12" aria-hidden="true"></div>
+  <h1 class="giant" data-speed="0.28">Zuhri</h1>
+  <div class="portrait" data-speed="0.04">
+    <b aria-hidden="true">Z</b>
+    <!-- Taruh fotomu di folder yang sama dengan nama foto.jpg -->
+    <img src="foto.jpg" alt="Foto Zuhri" onerror="this.remove()">
+  </div>
+  <div class="plane p-fg" data-speed="-0.3" aria-hidden="true"><i class="ring"></i><i class="sq"></i><i class="dot"></i></div>
+  <p class="lead">Beginner dev</p>
+</section>
 
-<main id="atas">
-  <section class="hero">
-    <div class="label"><i></i>Zuhri — Begginer Dev</div>
-    <h1>Modern websites for <em>local brands</em></h1>
-    <p class="sub">Responsive, clean, and easy to explore. <span>Built with care, tailored to your brand, and ready to go live.</span></p>
-  </section>
-
-
-  <section class="karya" id="karya">
-    <div class="judul">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#847979" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
-      Web Projects
+<section class="about" id="tentang">
+  <div class="stick">
+    <div class="wrap">
+      <p class="label">Information</p>
+      <p class="scrub">A beginner web developer dedicated to creating clean, responsive, and functional websites.</p>
     </div>
+  </div>
+</section>
 
-    
-    <a class="luar" href="https://zuhriidg.github.io/distrik-dua-lapan/">
-      <div class="dalam">
-        <div class="atas"><h3>Distrik Dua Lapan</h3>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#f4f4f5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></div>
-        <p><b>Website </b> — Browse the Full Menu & Reserve via Instagram DM “Coffee and Space”.</p>
-      </div>
-    </a>
-    <a class="luar kosong" href="#">
-      <div class="dalam">
-        <div class="atas"><h3>In development</h3>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7b7b83" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></div>
-        <p><b>In development</b> — In development</p>
-      </div>
-    </a>
-    <a class="luar kosong" href="#">
-      <div class="dalam">
-        <div class="atas"><h3>In development</h3>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7b7b83" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></div>
-        <p><b>In development</b> — In development</p>
-      </div>
-    </a>
-  </section>
+<section class="work" id="karya">
+  <div class="wrap">
+    <h2>Project</h2>
+    <div class="stack">
+      <article class="card" style="--i:0">
+        <div>
+          <span class="tag">First Project</span>
+          <h3>Distrik Dua Lapan</h3>
+          <p>Distrik Dua Lapan is a modern café website for a local coffee shop in Ngunut, Tulungagung. Designed with a calming blue theme and the tagline "Coffee and Space," it highlights the café's menu while providing a seamless reservation experience through Instagram DMs.</p>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+          <a class="btn" href="https://zuhriidg.github.io/distrik-dua-lapan" target="_blank" rel="noopener">Lihat website</a>
+          <div class="swatch" aria-hidden="true"><i style="background:#2F5BFF"></i><i style="background:#EAF0FF"></i><i style="background:#fff"></i></div>
+        </div>
+      </article>
 
-  <section class="info" id="info">
-    <h2>Information</h2>
-    <p>Hello, I'm Zuhri.</p>
-    <p>I create modern websites that combine clean design with practical functionality. Whether it's a café, local business, or online store, every website is crafted to reflect the brand and provide a seamless user experience.</p>
-    <p>From concept to launch, I focus on building websites that are fast, responsive, and designed to support business growth.</p>
-  </section>
+      <article class="card" style="--i:1">
+        <div>
+          <span class="tag">Personal Website</span>
+          <h3>In this Portofolio</h3>
+          <p>Built with a single HTML file using a dark-themed design, without any frameworks. Developed and edited in Acode, then deployed on GitHub Pages.</p>
+        </div>
+        <a class="btn ghost" href="https://instagram.com/zuhhhriii" target="_blank" rel="noopener">Check My Insta</a>
+      </article>
+
+      <article class="card" style="--i:2">
+        <div>
+          <span class="tag">Next?</span>
+          <h3>I think your website!</h3>
+          <p>Looking for a website? I'd be happy to help bring your ideas to life.</p>
+        </div>
+        <a class="btn" href="#kontak">Contact me</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="rows" aria-label="Yang sedang dipelajari">
+  <div class="row" id="r1" aria-hidden="true"><span>HTML</span><em>/</em><span>CSS</span><em>/</em><span>JavaScript</span><em>/</em><span>HTML</span><em>/</em><span>CSS</span><em>/</em><span>JavaScript</span></div>
+  <div class="row alt" id="r2" aria-hidden="true"><span>GitHub Pages</span><em>/</em><span>Acode</span><em>/</em><span>GitHub Pages</span><em>/</em><span>Acode</span></div>
+  <div class="wrap"><p class="note">im still learning: HTML, CSS, Basic JavaScript.</p></div>
+</section>
+
+<section class="contact" id="kontak">
+  <div class="wrap">
+    <div class="split">
+      <h2>Lets Create <u>Your Website</u></h2>
+      <div class="links">
+        <a href="https://instagram.com/zuhhhriii" target="_blank" rel="noopener"><span>Instagram</span><small>@zuhhhriii</small></a>
+        <a href="mailto:saifudinzuhri744@gmail.com"><span>Email</span><small>emailkamu@gmail.com</small></a>
+      </div>
+    </div>
+    <footer>Generated With HTML And CSS.</footer>
+  </div>
+</section>
 </main>
 
-<footer>© 2026 Zuhri</footer>
-<footer>Generate with HTML dan CSS.</footer>
-
 <script>
-  var body=document.body, geser=document.getElementById('geser'), muat=document.getElementById('muat');
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+  var clamp = function(v){return Math.min(1,Math.max(0,v))};
 
-  setTimeout(function(){muat.classList.add('selesai')},900);
+  var about = document.getElementById('tentang');
+  var scrub = about.querySelector('.scrub');
+  scrub.innerHTML = scrub.textContent.trim().split(/\s+/).map(function(w){return '<span>'+w+'</span>'}).join(' ');
+  var words = $('.scrub span');
+  var par = $('[data-speed]');
+  var brand = document.querySelector('.brand');
+  var r1 = document.getElementById('r1'), r2 = document.getElementById('r2');
+  var busy = false;
 
-  
-  function buka(){geser.classList.add('naik');body.classList.remove('kunci');if(!diam)heroEl.forEach(function(el,i){tampilkan(el,.3+i*.12)})}
-  var y0=null;
-  geser.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});
-  geser.addEventListener('touchend',function(e){if(y0!==null&&y0-e.changedTouches[0].clientY>40)buka();y0=null});
-  geser.addEventListener('click',buka);
-  geser.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')buka()});
-  window.addEventListener('wheel',function(e){if(e.deltaY>0&&!geser.classList.contains('naik'))buka()},{passive:true});
+  function frame(){
+    busy = false;
+    var y = window.scrollY, h = window.innerHeight;
+    var max = document.documentElement.scrollHeight - h;
+    var p = max > 0 ? y / max : 0;
 
-  
-  var tombol=document.getElementById('tombolKontak'), kontak=document.getElementById('kontak');
-  function ubah(b){
-    kontak.classList.toggle('buka',b);
-    tombol.setAttribute('aria-expanded',b);
+    // gerakan bergantung langsung pada posisi scroll
+    brand.style.setProperty('--k', clamp((p - .5) / .4).toFixed(3));
+    if (reduce) return;
+
+    if (y < h * 1.4) par.forEach(function(el){
+      el.style.setProperty('--ty', (y * parseFloat(el.dataset.speed)).toFixed(1) + 'px');
+    });
+
+    var r = about.getBoundingClientRect();
+    var t = clamp(-r.top / (r.height - h));
+    var n = t * 1.15 * words.length;
+    words.forEach(function(w,i){ w.classList.toggle('on', n > i); });
+
+    r1.style.setProperty('--tx', (-y * .22).toFixed(1) + 'px');
+    r2.style.setProperty('--tx', (-1400 + y * .22).toFixed(1) + 'px');
   }
-  tombol.addEventListener('click',function(){ubah(!kontak.classList.contains('buka'))});
-  /* Tutup kalau mengetuk di luar kartu, menekan Escape, atau memilih tautan */
-  document.addEventListener('click',function(e){
-    if(!kontak.contains(e.target)&&!tombol.contains(e.target)) ubah(false);
-  });
-  [].forEach.call(kontak.querySelectorAll('a'),function(a){a.addEventListener('click',function(){ubah(false)})});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')ubah(false)});
-
-  
-  var diam=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var heroEl=[].slice.call(document.querySelectorAll('.hero .label,.hero h1,.hero .sub'));
-  var lain=[].slice.call(document.querySelectorAll('.judul,.luar,.info h2,.info p'));
-
-
-  function tampilkan(el,tunda){
-    el.style.setProperty('--tunda',tunda+'s');
-    requestAnimationFrame(function(){el.classList.add('tampak')});
-    setTimeout(function(){el.classList.remove('muncul','tampak');el.style.removeProperty('--tunda')},1300+tunda*1000);
-  }
-
-  if(!diam){
-    heroEl.forEach(function(el){el.classList.add('muncul')});
-    lain.forEach(function(el){el.classList.add('muncul')});
-
-    /* Reveal: element is at least 15% visible (ignoring the bottom 8% of the screen). */
-    var showIO=new IntersectionObserver(function(daftar){
-      var n=0;
-      daftar.forEach(function(e){
-        if(e.isIntersecting && !e.target.classList.contains('tampak')){
-          /* small stagger when several elements appear together (e.g. two cards at once) */
-          e.target.style.setProperty('--tunda',(n++*0.08)+'s');
-          e.target.classList.add('tampak');
-        }
-      });
-    },{threshold:.15,rootMargin:'0px 0px -8% 0px'});
-
-    
-    var hideIO=new IntersectionObserver(function(daftar){
-      daftar.forEach(function(e){
-        if(!e.isIntersecting){
-          var el=e.target;
-          el.style.setProperty('--tunda','0s');
-          el.classList.toggle('dari-atas',e.boundingClientRect.top<0);
-          el.classList.remove('tampak');
-        }
-      });
-    },{threshold:0});
-
-    lain.forEach(function(el){showIO.observe(el);hideIO.observe(el)});
-
-    
-    var hero=document.querySelector('.hero'), tunggu=false;
-    window.addEventListener('scroll',function(){
-      if(tunggu) return; tunggu=true;
-      requestAnimationFrame(function(){
-        var y=window.scrollY, h=window.innerHeight;
-        if(y<h){hero.style.transform='translateY('+(y*.18).toFixed(1)+'px)';hero.style.opacity=Math.max(0,1-y/(h*.8)).toFixed(2)}
-        else hero.style.opacity=0;
-        tunggu=false;
-      });
-    },{passive:true});
-  }
-  
-  var nK=document.getElementById('navKarya'), nI=document.getElementById('navInfo');
-  new IntersectionObserver(function(h){
-    var di=h[0].isIntersecting;
-    nI.setAttribute('aria-current',di); nK.setAttribute('aria-current',!di);
-  },{rootMargin:'-50% 0px -50% 0px'}).observe(document.getElementById('info'));
+  function req(){ if(!busy){ busy = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', req, {passive:true});
+  addEventListener('resize', req);
+  frame();
+})();
 </script>
 </body>
 </html>
